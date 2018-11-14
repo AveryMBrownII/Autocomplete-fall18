@@ -29,16 +29,21 @@ public class BinarySearchLibrary {
 	 */
 	
 	public static <T>
-    	int firstIndex(List<T> list, 
-	               	T target, Comparator<T> comp) {
+    	int firstIndex(List<T> list, T target, Comparator<T> comp) {
 		
 		int low = -1;
 		int high = list.size()-1;
 		// (low,high] contains target
 		// TODO: complete method
-		
+		while (low+1 != high) {
+			int mid = (low+high)/2;
+			if (comp.compare(list.get(mid), target) < 0) low = mid;
+			else high = mid;
+		}
+		if (comp.compare(list.get(high), target) == 0) return high;
 		return -1;
 	}
+
 
 	/**
 	 * Uses binary search to find the index of the last object in parameter
@@ -61,6 +66,12 @@ public class BinarySearchLibrary {
 		
 		// target in [low,high)
 		// TODO: complete method
+		while (low != high-1) {
+			int mid = (low+high)/2;
+			if (comp.compare(list.get(mid), target) <= 0) low = mid;
+			else high = mid;
+		}
+		if (comp.compare(list.get(low), target) == 0) return low;
 		return -1;
 	}
 	
