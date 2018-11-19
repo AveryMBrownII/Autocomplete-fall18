@@ -92,6 +92,7 @@ public class Term implements Comparable<Term> {
 			String vword = v.getWord();
 			String wword = w.getWord();
 			
+			if (vword == wword) return 0;
 			for (int x = 0; x < myPrefixSize; x++) {
 				try {
 					vword.charAt(x);
